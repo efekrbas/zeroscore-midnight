@@ -4,6 +4,7 @@ import { Hero } from "@/components/zero/Hero";
 import { Dashboard } from "@/components/zero/Dashboard";
 import { Verifier } from "@/components/zero/Verifier";
 import { Architecture } from "@/components/zero/Architecture";
+import { Marquee } from "@/components/zero/Marquee";
 import { Footer } from "@/components/zero/Footer";
 import { Preloader } from "@/components/zero/Preloader";
 
@@ -32,6 +33,7 @@ function Index() {
       <Header />
       <main>
         <Hero />
+        <Marquee />
         <Dashboard />
         <Verifier />
         <Architecture />
