@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="zgrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="50%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  <!-- Outer Shield Silhouette -->
+  <path d="M50 8 L85 22 V50 C85 75 50 92 50 92 C50 92 15 75 15 50 V22 L50 8 Z" stroke="url(#zgrad)" stroke-width="3" stroke-opacity="0.4" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- Inner Abstract Z -->
+  <path d="M35 35 H 65 L 35 65 H 65" stroke="url(#zgrad)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)" />
+</svg>

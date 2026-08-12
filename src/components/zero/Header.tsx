@@ -34,9 +34,9 @@ export function Header() {
           }`}
         >
           <a href="#top" className="flex items-center gap-3 group active:scale-[0.97] transition-transform duration-200">
-            <span className="relative grid size-10 place-items-center rounded-full bg-primary/10 glow-ring group-hover:bg-primary/20 transition-colors">
-              <ShieldCheck className="size-5 text-primary" strokeWidth={1.5} />
-            </span>
+            <div className="grid size-9 place-items-center rounded-xl bg-primary/10 border border-primary/20 p-1.5">
+              <img src="/logo.svg" alt="Logo" className="w-full h-full object-contain" />
+            </div>
             <span className="text-lg font-semibold tracking-tight text-foreground">
               Zero<span className="text-primary">Score</span>
             </span>
