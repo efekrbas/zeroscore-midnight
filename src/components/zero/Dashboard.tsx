@@ -80,7 +80,7 @@ export function Dashboard() {
   };
 
   return (
-    <section id="dashboard" className="relative mx-auto max-w-7xl px-5 min-h-[100dvh] flex flex-col justify-center scroll-mt-24 py-20">
+    <section id="dashboard" className="relative mx-auto max-w-7xl scroll-mt-32 px-5 py-32">
       <div className="max-w-3xl mb-16">
         <span className="text-xs tracking-[0.2em] text-primary uppercase font-medium">Verification Core</span>
         <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
