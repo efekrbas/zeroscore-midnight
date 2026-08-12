@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ShieldCheck, Wallet, Menu, X, ArrowRight, LogOut } from "lucide-react";
+import { ShieldCheck, Wallet, Menu, X, ArrowRight, LogOut, Loader2 } from "lucide-react";
+import { midnightService } from "@/services/midnight";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 
 const links = [
@@ -13,6 +15,30 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [connected, setConnected] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isConnecting, setIsConnecting] = useState(false);
+
+  const handleConnect = async () => {
+    if (connected) {
+      setConnected(false);
+      toast.info("Wallet disconnected");
+      return;
+    }
+    
+    setIsConnecting(true);
+    try {
+      const success = await midnightService.connectLaceWallet();
+      if (success) {
+        setConnected(true);
+        toast.success("Connected to Midnight Lace Wallet!");
+      } else {
+        toast.error("Failed to connect wallet.");
+      }
+    } catch (error) {
+      toast.error("Connection rejected.");
+    } finally {
+      setIsConnecting(false);
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,35 +81,39 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-3">
-            {/* Button-in-Button CTA Architecture */}
             <button
-              onClick={() => setConnected((c) => !c)}
-              className={`hidden md:flex group relative items-center gap-3 rounded-full pl-5 pr-1.5 py-1.5 text-sm font-medium shadow-lg transition-all duration-300 active:scale-[0.97] overflow-hidden ${
-                connected
-                  ? "bg-primary text-primary-foreground hover:bg-red-500 hover:text-white"
-                  : "bg-primary text-primary-foreground hover:bg-primary/90"
-              }`}
+              onClick={handleConnect}
+              disabled={isConnecting}
+              className="group relative flex h-10 shrink-0 items-center gap-2 overflow-hidden rounded-full p-1 pl-4 font-medium transition-all duration-300 hover:w-[150px] sm:hover:w-[170px] disabled:opacity-70 disabled:cursor-not-allowed"
+              style={{
+                width: "150px",
+                backgroundColor: connected ? "rgba(16, 185, 129, 0.1)" : "rgba(255, 255, 255, 0.05)",
+                border: connected ? "1px solid rgba(16, 185, 129, 0.3)" : "1px solid rgba(255, 255, 255, 0.1)",
+                color: connected ? "var(--primary)" : "white"
+              }}
             >
-              <span className="min-w-[105px] text-center">
-                {connected ? (
-                  <>
-                    <span className="block group-hover:hidden">midn1q…8f3a</span>
-                    <span className="hidden group-hover:block">Disconnect</span>
-                  </>
-                ) : (
-                  "Connect Wallet"
-                )}
+              <span className="invisible whitespace-nowrap opacity-0 absolute">
+                {connected ? "0x3f...9a2c" : "Connect Wallet"}
               </span>
-              <div className={`relative z-10 grid size-7 place-items-center rounded-full bg-black/10 transition-transform duration-300 group-hover:scale-105 ${connected ? "group-hover:bg-white/20" : ""}`}>
-                {connected ? (
-                  <>
-                    <ShieldCheck className="size-3.5 block group-hover:hidden" strokeWidth={2} />
-                    <LogOut className="size-3.5 hidden group-hover:block" strokeWidth={2} />
-                  </>
-                ) : (
-                  <Wallet className="size-3.5" strokeWidth={2} />
-                )}
-              </div>
+
+              <span className="relative z-10 flex w-full items-center justify-between gap-3">
+                <span className="whitespace-nowrap font-mono text-[13px] tracking-tight">
+                  {isConnecting ? "Connecting..." : connected ? "0x3f...9a2c" : "Connect Wallet"}
+                </span>
+                <span
+                  className="grid size-7 shrink-0 place-items-center rounded-full transition-colors duration-300"
+                  style={{
+                    backgroundColor: connected ? "rgba(16, 185, 129, 0.2)" : "rgba(255, 255, 255, 0.1)",
+                    color: connected ? "var(--primary)" : "white"
+                  }}
+                >
+                  {isConnecting ? (
+                    <Loader2 className="size-3.5 animate-spin" />
+                  ) : (
+                    <Wallet className="size-3.5" />
+                  )}
+                </span>
+              </span>
             </button>
 
             <button

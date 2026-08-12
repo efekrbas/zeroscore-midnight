@@ -4,6 +4,8 @@ import { FileCheck, QrCode, Search, AlertCircle, ScanLine, ShieldCheck, XCircle,
 import { SpotlightCard } from "./SpotlightCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { midnightService } from "@/services/midnight";
+import { toast } from "sonner";
 
 type State = "idle" | "checking" | "valid" | "invalid";
 
@@ -11,10 +13,22 @@ export function Verifier() {
   const [hash, setHash] = useState("");
   const [state, setState] = useState<State>("idle");
 
-  const verify = () => {
+  const verify = async () => {
     if (!hash.trim()) return;
     setState("checking");
-    setTimeout(() => setState(hash.trim().startsWith("0x") ? "valid" : "invalid"), 1400);
+    
+    try {
+      const isValid = await midnightService.verifyProofOnChain(hash.trim());
+      setState(isValid ? "valid" : "invalid");
+      if (isValid) {
+        toast.success("Cryptographic Proof Verified");
+      } else {
+        toast.error("Invalid or unknown proof hash");
+      }
+    } catch (error) {
+      setState("invalid");
+      toast.error("Failed to query Midnight Network");
+    }
   };
 
   return (
