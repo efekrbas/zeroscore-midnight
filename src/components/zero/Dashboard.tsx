@@ -33,7 +33,7 @@ const steps = [
 type Result = { hash: string; timestamp: string; claim: string; passed: boolean };
 
 // Emil Kowalski easing
-const customEase = [0.23, 1, 0.32, 1];
+const customEase = [0.23, 1, 0.32, 1] as any;
 
 export function Dashboard() {
   const [values, setValues] = useState({ balance: "", credit: "", income: "" });

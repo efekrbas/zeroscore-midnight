@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { ArrowRight, BookOpen, Lock, EyeOff, Network } from "lucide-react";
+import { Scene3D } from "./Scene3D";
 
 const chips = [
   { icon: Lock, label: "Private state stays local" },
@@ -8,13 +9,13 @@ const chips = [
 ];
 
 // Emil Kowalski easing
-const customEase = [0.23, 1, 0.32, 1];
+const customEase = [0.23, 1, 0.32, 1] as any;
 
 export function Hero() {
   return (
     <section id="top" className="relative min-h-[100dvh] overflow-hidden hero-bg flex flex-col justify-center pt-32 pb-12">
-      <div className="pointer-events-none absolute inset-0 grid-lines" />
-      <div className="relative mx-auto w-full max-w-5xl px-5 text-center">
+      <Scene3D />
+      <div className="relative z-10 mx-auto w-full max-w-5xl px-5 text-center">
         
         {/* Eyebrow Tag */}
         <motion.div
