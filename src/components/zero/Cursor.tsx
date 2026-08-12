@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 export function Cursor() {
   const [isHovering, setIsHovering] = useState(false);
@@ -11,6 +11,9 @@ export function Cursor() {
   const springConfig = { damping: 25, stiffness: 300, mass: 0.5 };
   const cursorX = useSpring(mouseX, springConfig);
   const cursorY = useSpring(mouseY, springConfig);
+  
+  const dotX = useSpring(useTransform(mouseX, m => m + 13), { damping: 40, stiffness: 600 });
+  const dotY = useSpring(useTransform(mouseY, m => m + 13), { damping: 40, stiffness: 600 });
 
   useEffect(() => {
     const moveCursor = (e: MouseEvent) => {
@@ -58,8 +61,8 @@ export function Cursor() {
       <motion.div
         className="pointer-events-none fixed left-0 top-0 z-[9999] hidden md:block h-1.5 w-1.5 rounded-full bg-primary mix-blend-screen"
         style={{
-          x: useSpring(useMotionValue(mouseX.get() + 13), { damping: 40, stiffness: 600 }),
-          y: useSpring(useMotionValue(mouseY.get() + 13), { damping: 40, stiffness: 600 }),
+          x: dotX,
+          y: dotY,
           opacity: isHovering ? 0 : 1
         }}
       />
