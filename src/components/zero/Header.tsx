@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ShieldCheck, Wallet, Menu, X, ArrowRight } from "lucide-react";
+import { ShieldCheck, Wallet, Menu, X, ArrowRight, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const links = [
@@ -58,12 +58,28 @@ export function Header() {
             {/* Button-in-Button CTA Architecture */}
             <button
               onClick={() => setConnected((c) => !c)}
-              className="hidden md:flex group relative items-center gap-3 rounded-full bg-primary pl-5 pr-1.5 py-1.5 text-sm font-medium text-primary-foreground shadow-lg transition-all duration-300 hover:bg-primary/90 active:scale-[0.97]"
+              className={`hidden md:flex group relative items-center gap-3 rounded-full pl-5 pr-1.5 py-1.5 text-sm font-medium shadow-lg transition-all duration-300 active:scale-[0.97] overflow-hidden ${
+                connected
+                  ? "bg-primary text-primary-foreground hover:bg-red-500 hover:text-white"
+                  : "bg-primary text-primary-foreground hover:bg-primary/90"
+              }`}
             >
-              <span>{connected ? "midn1q…8f3a" : "Connect Wallet"}</span>
-              <div className="grid size-7 place-items-center rounded-full bg-black/10 transition-transform duration-300 group-hover:scale-105 group-hover:translate-x-0.5 group-hover:-translate-y-[0.5px]">
+              <span className="min-w-[105px] text-center">
                 {connected ? (
-                  <ShieldCheck className="size-3.5" strokeWidth={2} />
+                  <>
+                    <span className="block group-hover:hidden">midn1q…8f3a</span>
+                    <span className="hidden group-hover:block">Disconnect</span>
+                  </>
+                ) : (
+                  "Connect Wallet"
+                )}
+              </span>
+              <div className={`relative z-10 grid size-7 place-items-center rounded-full bg-black/10 transition-transform duration-300 group-hover:scale-105 ${connected ? "group-hover:bg-white/20" : ""}`}>
+                {connected ? (
+                  <>
+                    <ShieldCheck className="size-3.5 block group-hover:hidden" strokeWidth={2} />
+                    <LogOut className="size-3.5 hidden group-hover:block" strokeWidth={2} />
+                  </>
                 ) : (
                   <Wallet className="size-3.5" strokeWidth={2} />
                 )}
