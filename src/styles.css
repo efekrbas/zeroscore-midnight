@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import "tw-animate-css";
+@import "tailwindcss" source(none);
+@source "../src";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-cyan: var(--cyan);
+  --color-violet: var(--violet);
+  --color-surface: var(--surface);
+
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+:root {
+  --radius: 0.875rem;
+  
+  /* Ethereal Glass / OLED Black Archetype */
+  --background: oklch(0.12 0.02 275);
+  --foreground: oklch(0.98 0.01 250);
+  --surface: oklch(0.16 0.03 278);
+  --card: oklch(0.18 0.03 278 / 50%);
+  --card-foreground: oklch(0.98 0.01 250);
+  
+  --primary: oklch(0.85 0.15 160); /* Emerald/Green tint */
+  --primary-foreground: oklch(0.12 0.02 275);
+  --secondary: oklch(0.22 0.04 280);
+  --secondary-foreground: oklch(0.98 0.01 250);
+  --muted: oklch(0.20 0.04 280);
+  --muted-foreground: oklch(0.65 0.03 265);
+  --accent: oklch(0.85 0.15 195);
+  --accent-foreground: oklch(0.12 0.02 275);
+  --border: oklch(0.98 0.02 200 / 10%);
+  --input: oklch(0.98 0.02 200 / 12%);
+  --ring: oklch(0.85 0.15 160);
+  
+  --cyan: oklch(0.85 0.15 195);
+  --violet: oklch(0.6 0.22 300);
+
+  /* Emil Kowalski Animation Easings */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* Deep Web3 Gradients */
+  --gradient-hero: radial-gradient(
+      ellipse 90% 70% at 50% -15%,
+      color-mix(in oklab, var(--primary) 25%, transparent),
+      transparent 75%
+    ),
+    radial-gradient(
+      ellipse 70% 60% at 85% 10%,
+      color-mix(in oklab, var(--violet) 15%, transparent),
+      transparent 70%
+    );
+  
+  --glow-primary: 0 0 0 1px color-mix(in oklab, var(--primary) 20%, transparent),
+    0 0 40px -10px color-mix(in oklab, var(--primary) 50%, transparent);
+  --shadow-glass: 0 24px 60px -24px oklch(0 0 0 / 90%);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* 
+  Double-Bezel UI Architecture (Premium Cards)
+  Outer shell + Inner core
+*/
+@utility double-bezel-outer {
+  background: color-mix(in oklab, var(--surface) 30%, transparent);
+  border: 1px solid color-mix(in oklab, var(--color-foreground) 5%, transparent);
+  border-radius: 2rem;
+  padding: 0.375rem; /* Equivalent to p-1.5 */
+  box-shadow: 0 32px 64px -16px oklch(0 0 0 / 50%);
+}
+
+@utility double-bezel-inner {
+  background: linear-gradient(
+    160deg,
+    color-mix(in oklab, var(--surface) 90%, transparent),
+    color-mix(in oklab, var(--background) 80%, transparent)
+  );
+  border-radius: calc(2rem - 0.375rem);
+  box-shadow: inset 0 1px 1px color-mix(in oklab, var(--color-foreground) 10%, transparent);
+  backdrop-filter: blur(24px);
+  border: 1px solid color-mix(in oklab, var(--color-foreground) 5%, transparent);
+}
+
+@utility glass {
+  background: linear-gradient(
+    160deg,
+    color-mix(in oklab, var(--surface) 80%, transparent),
+    color-mix(in oklab, var(--background) 70%, transparent)
+  );
+  border: 1px solid var(--color-border);
+  backdrop-filter: blur(24px);
+  box-shadow: var(--shadow-glass);
+}
+
+@utility glow-ring {
+  box-shadow: var(--glow-primary);
+}
+
+@utility hero-bg {
+  background-image: var(--gradient-hero);
+}
+
+@utility text-gradient {
+  background: linear-gradient(100deg, var(--foreground) 20%, var(--primary) 60%, var(--cyan));
+  background-clip: text;
+  color: transparent;
+}
+
+@utility grid-lines {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--primary) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--primary) 7%, transparent) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, black, transparent 80%);
+}
+
+/* Reduced motion safety */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

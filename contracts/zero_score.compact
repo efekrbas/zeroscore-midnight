@@ -1,0 +1,49 @@
+pragma language_version >= 0.23;
+
+import CompactStandardLibrary;
+
+// ============================================================================
+// PUBLIC STATE (Ledger)
+// ============================================================================
+// Ledger variables are publicly visible on the Midnight network.
+// Anyone can read these values via the Midnight Indexer.
+
+export ledger authority: Bytes<32>;
+export ledger verificationLogs: Set<Bytes<32>>;
+
+// The constructor runs once during contract deployment.
+constructor(authorityPubKey: Bytes<32>) {
+    authority = authorityPubKey;
+}
+
+// ============================================================================
+// ZERO-KNOWLEDGE CIRCUIT
+// ============================================================================
+// Circuits are executed locally in a PRIVATE context (the user's wallet/node).
+// Variables prefixed with '_' are private inputs that stay on the client machine.
+// The network only sees a Zero-Knowledge Proof (ZKP) and any public state changes.
+
+export circuit verify_threshold(threshold: Uint<64>, _secretScore: Uint<64>, _userSecret: Bytes<32>): Boolean {
+    
+    // 1. Private State Verification
+    // Read secretScore from client private state (_secretScore) and verify it locally.
+    // The ZKP will guarantee to the network that this assertion passed, 
+    // WITHOUT ever exposing the actual value of _secretScore.
+    assert(_secretScore >= threshold, "The secret score is below the required threshold");
+
+    // 2. Public Verification Event (Commitment)
+    // Generate a unique commitment hash for this verification event.
+    // By hashing a private secret (_userSecret) along with a context string, 
+    // we create a unique, verifiable proof log without leaking the user's identity.
+    const commitHash = persistentHash<Vector<2, Bytes<32>>>([
+        pad(32, "zeroscore:verify"),
+        _userSecret
+    ]);
+
+    // 3. Update Public State
+    // Insert the generated commitment hash into the public verificationLogs.
+    verificationLogs.insert(commitHash);
+
+    // 4. Output a boolean result indicating successful verification
+    return true;
+}
