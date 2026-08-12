@@ -42,14 +42,14 @@ export function Preloader() {
               initial={{ width: "0%", opacity: 0 }}
               animate={{ width: "100%", opacity: 1 }}
               transition={{ duration: 1.8, ease: "easeInOut" }}
-              className="absolute inset-0 bg-cyan-500 blur-sm opacity-50"
+              className="absolute inset-0 bg-emerald-500 blur-sm opacity-50"
             />
             {/* Actual progress bar */}
             <motion.div
               initial={{ width: "0%" }}
               animate={{ width: "100%" }}
               transition={{ duration: 1.8, ease: "easeInOut" }}
-              className="relative h-full bg-gradient-to-r from-blue-500 via-cyan-500 to-emerald-500 rounded-full"
+              className="relative h-full bg-gradient-to-r from-emerald-300 via-emerald-400 to-emerald-600 rounded-full"
             />
           </div>
           
