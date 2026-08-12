@@ -25,7 +25,7 @@ export function Hero() {
           className="mx-auto inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-[10px] uppercase tracking-[0.2em] font-medium text-primary shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]"
         >
           <span className="size-1.5 animate-pulse rounded-full bg-primary" />
-          Midnight Network Buildathon
+          Built on Midnight Network
         </motion.div>
 
         {/* Massive Typography */}
