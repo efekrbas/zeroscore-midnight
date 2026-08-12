@@ -12,7 +12,7 @@ const customEase = [0.23, 1, 0.32, 1];
 
 export function Hero() {
   return (
-    <section id="top" className="relative min-h-[100dvh] overflow-hidden hero-bg flex flex-col justify-center pb-32 pt-20">
+    <section id="top" className="relative min-h-[100dvh] overflow-hidden hero-bg flex flex-col justify-center pt-32 pb-12">
       <div className="pointer-events-none absolute inset-0 grid-lines" />
       <div className="relative mx-auto w-full max-w-5xl px-5 text-center">
         
