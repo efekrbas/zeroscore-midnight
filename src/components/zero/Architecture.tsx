@@ -24,7 +24,7 @@ const cards = [
 
 export function Architecture() {
   return (
-    <section id="architecture" className="mx-auto max-w-6xl scroll-mt-20 px-5 py-24">
+    <section id="architecture" className="mx-auto max-w-6xl scroll-mt-20 px-5 py-24 min-h-[100dvh]">
       <div className="max-w-2xl">
         <span className="text-xs tracking-[0.2em] text-accent uppercase">Architecture</span>
         <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
