@@ -17,7 +17,7 @@ export function Verifier() {
   };
 
   return (
-    <section id="verifiers" className="relative scroll-mt-20 border-y border-border/60 bg-surface/30">
+    <section id="verifiers" className="relative scroll-mt-20 border-y border-border/60 bg-surface/30 min-h-[100dvh]">
       <div className="mx-auto max-w-6xl px-5 py-24">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center">
           <div>
