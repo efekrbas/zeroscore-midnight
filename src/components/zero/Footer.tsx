@@ -2,7 +2,7 @@ import { Github, Globe, BookOpen, ShieldCheck } from "lucide-react";
 
 const links = [
   { icon: Github, label: "github.com/zeroscore-midnight", href: "https://github.com/zeroscore-midnight" },
-  { icon: Globe, label: "zeroscore.vercel.app", href: "https://zeroscore.vercel.app" },
+  { icon: Globe, label: "zeroscore-midnight.vercel.app", href: "https://zeroscore-midnight.vercel.app" },
   { icon: BookOpen, label: "Midnight Docs", href: "https://docs.midnight.network" },
 ];
 

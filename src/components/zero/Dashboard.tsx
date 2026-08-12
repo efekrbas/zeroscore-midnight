@@ -261,7 +261,7 @@ export function Dashboard() {
                     <div className="mt-auto flex flex-col gap-3">
                       <button
                         onClick={() => {
-                          navigator.clipboard?.writeText(`https://zeroscore.vercel.app/verify/${result.hash}`);
+                          navigator.clipboard?.writeText(`https://zeroscore-midnight.vercel.app/verify/${result.hash}`);
                           toast.success("Verification link copied");
                         }}
                         className="group flex h-12 w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 font-medium text-foreground transition-all duration-300 hover:bg-white/10 active:scale-[0.97]"

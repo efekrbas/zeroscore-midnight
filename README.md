@@ -2,7 +2,7 @@
 
 **Verifiable & Privacy-Preserving Financial Credentials**
 
-🌐 **Live Demo:** [https://zeroscore.vercel.app](https://zeroscore.vercel.app)
+🌐 **Live Demo:** [https://zeroscore-midnight.vercel.app](https://zeroscore-midnight.vercel.app)
 
 ---
 
