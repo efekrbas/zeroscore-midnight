@@ -22,7 +22,7 @@ export function Verifier() {
       <div className="mx-auto max-w-6xl px-5 py-24">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center">
           <div>
-            <span className="text-xs tracking-[0.2em] text-accent uppercase">For lenders &amp; DeFi</span>
+            <span className="text-xs tracking-[0.2em] text-primary uppercase">For lenders &amp; DeFi</span>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
               Live Verifier Portal
             </h2>
@@ -33,7 +33,7 @@ export function Verifier() {
             <SpotlightCard className="mt-8 p-5">
               <div className="flex items-center gap-4">
                 <div className="relative z-10 grid size-24 shrink-0 place-items-center rounded-xl border border-border bg-background/60">
-                  <QrCode className="size-12 text-accent" />
+                  <QrCode className="size-12 text-primary" />
                 </div>
                 <div className="relative z-10 text-sm text-muted-foreground">
                   <p className="font-medium text-foreground">Scan credential QR</p>

@@ -27,7 +27,7 @@ export function Architecture() {
   return (
     <section id="architecture" className="mx-auto max-w-6xl scroll-mt-20 px-5 py-24 min-h-[100dvh]">
       <div className="max-w-2xl">
-        <span className="text-xs tracking-[0.2em] text-accent uppercase">Architecture</span>
+        <span className="text-xs tracking-[0.2em] text-primary uppercase">Architecture</span>
         <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
           Privacy is the protocol, not a setting
         </h2>
@@ -49,7 +49,7 @@ export function Architecture() {
               </span>
               <h3 className="relative z-10 mt-5 text-lg font-semibold tracking-tight">{c.title}</h3>
               <p className="relative z-10 mt-3 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
-              <p className="relative z-10 mt-6 font-mono text-[11px] text-accent/80">{c.tag}</p>
+              <p className="relative z-10 mt-6 font-mono text-[11px] text-primary/80">{c.tag}</p>
             </SpotlightCard>
           </motion.div>
         ))}
