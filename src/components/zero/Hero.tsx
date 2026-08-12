@@ -13,10 +13,12 @@ const customEase = [0.23, 1, 0.32, 1] as any;
 
 export function Hero() {
   return (
-    <section id="top" className="relative min-h-[100dvh] overflow-hidden hero-bg flex flex-col justify-center pt-32 pb-12">
+    <section
+      id="top"
+      className="relative min-h-[100dvh] overflow-hidden hero-bg flex flex-col justify-center pt-32 pb-12"
+    >
       <Scene3D />
       <div className="relative z-10 mx-auto w-full max-w-5xl px-5 text-center">
-        
         {/* Eyebrow Tag */}
         <motion.div
           initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
@@ -45,7 +47,8 @@ export function Hero() {
           transition={{ duration: 1, delay: 0.2, ease: customEase }}
           className="mx-auto mt-8 max-w-2xl text-base text-muted-foreground sm:text-xl font-medium"
         >
-          Zero-Knowledge Credit &amp; Asset Verification powered by Midnight Network &amp; Compact DSL.
+          Zero-Knowledge Credit &amp; Asset Verification powered by Midnight Network &amp; Compact
+          DSL.
         </motion.p>
 
         {/* CTAs */}

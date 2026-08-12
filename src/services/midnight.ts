@@ -5,7 +5,7 @@ export interface MidnightProvider {
   connectLaceWallet: () => Promise<boolean>;
   generateZKProof: (
     privateValue: number,
-    threshold: number
+    threshold: number,
   ) => Promise<{ hash: string; passed: boolean }>;
   verifyProofOnChain: (proofHash: string) => Promise<boolean>;
 }
@@ -22,9 +22,9 @@ class MidnightService implements MidnightProvider {
 
     try {
       // Real implementation would check window.midnight?.lace
-      // @ts-ignore
+      // @ts-expect-error window object missing midnight in TS by default
       if (typeof window !== "undefined" && window.midnight?.lace) {
-        // @ts-ignore
+        // @ts-expect-error window object missing midnight in TS by default
         await window.midnight.lace.enable();
         this.isConnected = true;
         return true;
@@ -46,7 +46,7 @@ class MidnightService implements MidnightProvider {
    */
   async generateZKProof(
     privateValue: number,
-    threshold: number
+    threshold: number,
   ): Promise<{ hash: string; passed: boolean }> {
     console.log(`Generating ZK Proof... (threshold: ${threshold})`);
 
@@ -63,7 +63,7 @@ class MidnightService implements MidnightProvider {
     if (!passed) {
       // In Midnight, if the circuit assert fails, the proof generation throws on the client
       throw new Error(
-        "Proof generation failed: Condition not met (Private value is below threshold)."
+        "Proof generation failed: Condition not met (Private value is below threshold).",
       );
     }
 

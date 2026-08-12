@@ -48,7 +48,9 @@ export function Architecture() {
                 <c.icon className="size-5" />
               </span>
               <h3 className="relative z-10 mt-5 text-lg font-semibold tracking-tight">{c.title}</h3>
-              <p className="relative z-10 mt-3 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
+              <p className="relative z-10 mt-3 text-sm leading-relaxed text-muted-foreground">
+                {c.body}
+              </p>
               <p className="relative z-10 mt-6 font-mono text-[11px] text-primary/80">{c.tag}</p>
             </SpotlightCard>
           </motion.div>

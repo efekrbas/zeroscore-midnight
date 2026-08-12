@@ -1,6 +1,15 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { FileCheck, QrCode, Search, AlertCircle, ScanLine, ShieldCheck, XCircle, Loader2 } from "lucide-react";
+import {
+  FileCheck,
+  QrCode,
+  Search,
+  AlertCircle,
+  ScanLine,
+  ShieldCheck,
+  XCircle,
+  Loader2,
+} from "lucide-react";
 import { SpotlightCard } from "./SpotlightCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -16,7 +25,7 @@ export function Verifier() {
   const verify = async () => {
     if (!hash.trim()) return;
     setState("checking");
-    
+
     try {
       const isValid = await midnightService.verifyProofOnChain(hash.trim());
       setState(isValid ? "valid" : "invalid");
@@ -32,11 +41,16 @@ export function Verifier() {
   };
 
   return (
-    <section id="verifiers" className="relative scroll-mt-20 border-y border-border/60 bg-surface/30 min-h-[100dvh]">
+    <section
+      id="verifiers"
+      className="relative scroll-mt-20 border-y border-border/60 bg-surface/30 min-h-[100dvh]"
+    >
       <div className="mx-auto max-w-6xl px-5 py-24">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:items-center">
           <div>
-            <span className="text-xs tracking-[0.2em] text-primary uppercase">For lenders &amp; DeFi</span>
+            <span className="text-xs tracking-[0.2em] text-primary uppercase">
+              For lenders &amp; DeFi
+            </span>
             <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
               Live Verifier Portal
             </h2>
@@ -52,7 +66,8 @@ export function Verifier() {
                 <div className="relative z-10 text-sm text-muted-foreground">
                   <p className="font-medium text-foreground">Scan credential QR</p>
                   <p className="mt-1">
-                    Point the holder's ZeroScore wallet QR at your camera to auto-fill the proof hash.
+                    Point the holder's ZeroScore wallet QR at your camera to auto-fill the proof
+                    hash.
                   </p>
                 </div>
               </div>

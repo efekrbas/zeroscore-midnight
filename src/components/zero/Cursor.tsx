@@ -3,17 +3,23 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 export function Cursor() {
   const [isHovering, setIsHovering] = useState(false);
-  
+
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  
+
   // Smooth spring configuration for the outer ring
   const springConfig = { damping: 25, stiffness: 300, mass: 0.5 };
   const cursorX = useSpring(mouseX, springConfig);
   const cursorY = useSpring(mouseY, springConfig);
-  
-  const dotX = useSpring(useTransform(mouseX, m => m + 13), { damping: 40, stiffness: 600 });
-  const dotY = useSpring(useTransform(mouseY, m => m + 13), { damping: 40, stiffness: 600 });
+
+  const dotX = useSpring(
+    useTransform(mouseX, (m) => m + 13),
+    { damping: 40, stiffness: 600 },
+  );
+  const dotY = useSpring(
+    useTransform(mouseY, (m) => m + 13),
+    { damping: 40, stiffness: 600 },
+  );
 
   useEffect(() => {
     const moveCursor = (e: MouseEvent) => {
@@ -24,9 +30,9 @@ export function Cursor() {
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       if (
-        target.tagName === "BUTTON" || 
-        target.tagName === "A" || 
-        target.closest("button") || 
+        target.tagName === "BUTTON" ||
+        target.tagName === "A" ||
+        target.closest("button") ||
         target.closest("a")
       ) {
         setIsHovering(true);
@@ -63,7 +69,7 @@ export function Cursor() {
         style={{
           x: dotX,
           y: dotY,
-          opacity: isHovering ? 0 : 1
+          opacity: isHovering ? 0 : 1,
         }}
       />
     </>

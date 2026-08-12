@@ -82,13 +82,15 @@ export function Dashboard() {
   return (
     <section id="dashboard" className="relative mx-auto max-w-7xl px-5 pt-32 pb-32">
       <div className="max-w-3xl mb-16">
-        <span className="text-xs tracking-[0.2em] text-primary uppercase font-medium">Verification Core</span>
+        <span className="text-xs tracking-[0.2em] text-primary uppercase font-medium">
+          Verification Core
+        </span>
         <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
           Interactive Proof Studio
         </h2>
         <p className="mt-4 text-lg text-muted-foreground leading-relaxed">
-          Your figures never leave this device. Only the boolean outcome and its zero-knowledge proof are published
-          to the Midnight ledger. True privacy, zero compromise.
+          Your figures never leave this device. Only the boolean outcome and its zero-knowledge
+          proof are published to the Midnight ledger. True privacy, zero compromise.
         </p>
       </div>
 
@@ -141,7 +143,9 @@ export function Dashboard() {
                         : "border-white/5 bg-black/20 hover:bg-black/40 hover:border-white/10"
                     }`}
                   >
-                    <span className={`text-sm font-medium ${condition === c.id ? "text-primary" : "text-muted-foreground group-hover:text-foreground"}`}>
+                    <span
+                      className={`text-sm font-medium ${condition === c.id ? "text-primary" : "text-muted-foreground group-hover:text-foreground"}`}
+                    >
                       {c.label}
                     </span>
                     <div className="mt-4 flex items-center justify-between">
@@ -161,13 +165,17 @@ export function Dashboard() {
         <div className="lg:col-span-5 lg:row-span-2 double-bezel-outer relative">
           <div className="double-bezel-inner p-8 sm:p-10 h-full flex flex-col">
             <StepHeader n={3} title="Execution Engine" />
-            
+
             <button
               className="group relative mt-6 flex h-14 w-full items-center justify-center gap-3 rounded-2xl bg-foreground font-semibold text-background shadow-lg transition-all duration-300 hover:bg-foreground/90 active:scale-[0.97] disabled:opacity-50 disabled:pointer-events-none"
               onClick={generate}
               disabled={running}
             >
-              {running ? <Loader2 className="size-5 animate-spin" /> : <ShieldCheck className="size-5" />}
+              {running ? (
+                <Loader2 className="size-5 animate-spin" />
+              ) : (
+                <ShieldCheck className="size-5" />
+              )}
               <span>{running ? "Proving..." : "Generate ZK-Proof"}</span>
             </button>
 
@@ -182,7 +190,9 @@ export function Dashboard() {
                     transition={{ duration: 0.4, ease: customEase }}
                     className="absolute inset-0 flex flex-col"
                   >
-                    <p className="font-mono text-[10px] uppercase tracking-widest text-primary">circuit://compact/zeroscore.v1</p>
+                    <p className="font-mono text-[10px] uppercase tracking-widest text-primary">
+                      circuit://compact/zeroscore.v1
+                    </p>
                     <ul className="mt-6 flex-1 space-y-6">
                       {steps.map((s, i) => {
                         const done = i < stepIndex;
@@ -210,7 +220,9 @@ export function Dashboard() {
                                 <s.icon className="size-4" strokeWidth={1.5} />
                               )}
                             </span>
-                            <span className={`font-medium transition-colors duration-500 ${done || active ? "text-foreground" : "text-muted-foreground"}`}>
+                            <span
+                              className={`font-medium transition-colors duration-500 ${done || active ? "text-foreground" : "text-muted-foreground"}`}
+                            >
                               {s.label}
                             </span>
                           </motion.li>
@@ -240,8 +252,10 @@ export function Dashboard() {
                       <CheckCircle2 className="size-3.5" />
                       {result.passed ? "Condition Satisfied" : "Condition Not Met"}
                     </div>
-                    
-                    <h4 className="mt-6 text-xs uppercase tracking-[0.2em] text-muted-foreground">Verified Claim</h4>
+
+                    <h4 className="mt-6 text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                      Verified Claim
+                    </h4>
                     <p className="mt-2 text-xl font-semibold">{result.claim}</p>
 
                     <dl className="mt-8 flex-1 space-y-4 text-sm">
@@ -251,22 +265,29 @@ export function Dashboard() {
                         </span>
                       </Row>
                       <Row label="Timestamp">
-                        <span className="font-mono text-xs text-muted-foreground">{result.timestamp}</span>
+                        <span className="font-mono text-xs text-muted-foreground">
+                          {result.timestamp}
+                        </span>
                       </Row>
                       <Row label="Network">
-                        <span className="font-mono text-xs text-muted-foreground">midnight-testnet-02</span>
+                        <span className="font-mono text-xs text-muted-foreground">
+                          midnight-testnet-02
+                        </span>
                       </Row>
                     </dl>
 
                     <div className="mt-auto flex flex-col gap-3">
                       <button
                         onClick={() => {
-                          navigator.clipboard?.writeText(`https://zeroscore-midnight.vercel.app/verify/${result.hash}`);
+                          navigator.clipboard?.writeText(
+                            `https://zeroscore-midnight.vercel.app/verify/${result.hash}`,
+                          );
                           toast.success("Verification link copied");
                         }}
                         className="group flex h-12 w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 font-medium text-foreground transition-all duration-300 hover:bg-white/10 active:scale-[0.97]"
                       >
-                        <Copy className="size-4 text-muted-foreground group-hover:text-foreground transition-colors" /> Copy Link
+                        <Copy className="size-4 text-muted-foreground group-hover:text-foreground transition-colors" />{" "}
+                        Copy Link
                       </button>
                       <a
                         href="#verifiers"
@@ -291,7 +312,9 @@ export function Dashboard() {
                       <ShieldCheck className="size-6 text-muted-foreground/50" strokeWidth={1.5} />
                     </div>
                     <p className="mt-6 text-sm font-medium text-muted-foreground/80 leading-relaxed">
-                      Engine ready.<br/>Provide private inputs to generate a cryptographic proof.
+                      Engine ready.
+                      <br />
+                      Provide private inputs to generate a cryptographic proof.
                     </p>
                   </motion.div>
                 )}
@@ -341,7 +364,10 @@ function Field({
 }) {
   return (
     <div className={className}>
-      <Label htmlFor={id} className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+      <Label
+        htmlFor={id}
+        className="text-xs font-medium text-muted-foreground uppercase tracking-wider"
+      >
         {label}
       </Label>
       <Input

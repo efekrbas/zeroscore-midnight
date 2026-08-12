@@ -18,7 +18,7 @@ export function Marquee() {
       {/* Fade Gradients for a seamless entry/exit */}
       <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-24 bg-gradient-to-r from-background to-transparent md:w-48" />
       <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-24 bg-gradient-to-l from-background to-transparent md:w-48" />
-      
+
       <motion.div
         animate={{ x: ["0%", "-50%"] }}
         transition={{ ease: "linear", duration: 40, repeat: Infinity }}
