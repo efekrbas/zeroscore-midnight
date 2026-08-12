@@ -184,3 +184,11 @@
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(16, 185, 129, 0.3);
 }
+
+/* Hide default cursor on desktop since we have a custom one */
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
+
