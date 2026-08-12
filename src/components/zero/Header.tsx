@@ -23,7 +23,7 @@ export function Header() {
       toast.info("Wallet disconnected");
       return;
     }
-    
+
     setIsConnecting(true);
     try {
       const success = await midnightService.connectLaceWallet();
@@ -59,7 +59,10 @@ export function Header() {
             scrolled ? "py-2 bg-surface/90" : ""
           }`}
         >
-          <a href="#top" className="flex items-center gap-3 group active:scale-[0.97] transition-transform duration-200">
+          <a
+            href="#top"
+            className="flex items-center gap-3 group active:scale-[0.97] transition-transform duration-200"
+          >
             <div className="grid size-9 place-items-center rounded-xl bg-primary/10 border border-primary/20 p-1.5">
               <img src="/logo.svg" alt="Logo" className="w-full h-full object-contain" />
             </div>
@@ -84,17 +87,17 @@ export function Header() {
             <button
               onClick={handleConnect}
               disabled={isConnecting}
-              className="group relative flex h-10 shrink-0 items-center gap-2 overflow-hidden rounded-full p-1 pl-4 font-medium transition-all duration-300 hover:w-[150px] sm:hover:w-[170px] disabled:opacity-70 disabled:cursor-not-allowed"
+              className="group relative flex h-10 w-auto shrink-0 items-center gap-3 overflow-hidden rounded-full p-1 pl-4 font-medium transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
               style={{
-                width: "150px",
-                backgroundColor: connected ? "rgba(16, 185, 129, 0.1)" : "rgba(255, 255, 255, 0.05)",
-                border: connected ? "1px solid rgba(16, 185, 129, 0.3)" : "1px solid rgba(255, 255, 255, 0.1)",
-                color: connected ? "var(--primary)" : "white"
+                backgroundColor: connected
+                  ? "rgba(16, 185, 129, 0.1)"
+                  : "rgba(255, 255, 255, 0.05)",
+                border: connected
+                  ? "1px solid rgba(16, 185, 129, 0.3)"
+                  : "1px solid rgba(255, 255, 255, 0.1)",
+                color: connected ? "var(--primary)" : "white",
               }}
             >
-              <span className="invisible whitespace-nowrap opacity-0 absolute">
-                {connected ? "0x3f...9a2c" : "Connect Wallet"}
-              </span>
 
               <span className="relative z-10 flex w-full items-center justify-between gap-3">
                 <span className="whitespace-nowrap font-mono text-[13px] tracking-tight">
@@ -103,8 +106,10 @@ export function Header() {
                 <span
                   className="grid size-7 shrink-0 place-items-center rounded-full transition-colors duration-300"
                   style={{
-                    backgroundColor: connected ? "rgba(16, 185, 129, 0.2)" : "rgba(255, 255, 255, 0.1)",
-                    color: connected ? "var(--primary)" : "white"
+                    backgroundColor: connected
+                      ? "rgba(16, 185, 129, 0.2)"
+                      : "rgba(255, 255, 255, 0.1)",
+                    color: connected ? "var(--primary)" : "white",
                   }}
                 >
                   {isConnecting ? (
@@ -122,10 +127,14 @@ export function Header() {
               aria-label="Toggle menu"
             >
               <div className="relative size-5">
-                <span className={`absolute inset-0 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] grid place-items-center ${open ? "rotate-180 opacity-0 scale-50" : "rotate-0 opacity-100 scale-100"}`}>
+                <span
+                  className={`absolute inset-0 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] grid place-items-center ${open ? "rotate-180 opacity-0 scale-50" : "rotate-0 opacity-100 scale-100"}`}
+                >
                   <Menu className="size-5" strokeWidth={1.5} />
                 </span>
-                <span className={`absolute inset-0 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] grid place-items-center ${open ? "rotate-0 opacity-100 scale-100" : "-rotate-180 opacity-0 scale-50"}`}>
+                <span
+                  className={`absolute inset-0 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] grid place-items-center ${open ? "rotate-0 opacity-100 scale-100" : "-rotate-180 opacity-0 scale-50"}`}
+                >
                   <X className="size-5" strokeWidth={1.5} />
                 </span>
               </div>
@@ -162,7 +171,7 @@ export function Header() {
                   </a>
                 </motion.div>
               ))}
-              
+
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
