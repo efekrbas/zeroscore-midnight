@@ -142,7 +142,7 @@
 }
 
 @utility text-gradient {
-  background: linear-gradient(100deg, var(--foreground) 20%, var(--primary) 60%, var(--cyan));
+  background: linear-gradient(100deg, var(--foreground) 10%, var(--primary) 90%);
   background-clip: text;
   color: transparent;
 }
