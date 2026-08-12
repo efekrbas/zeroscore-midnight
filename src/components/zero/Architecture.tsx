@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { EyeOff, Braces, Link2 } from "lucide-react";
+import { SpotlightCard } from "./SpotlightCard";
 
 const cards = [
   {
@@ -34,21 +35,23 @@ export function Architecture() {
 
       <div className="mt-12 grid gap-5 md:grid-cols-3">
         {cards.map((c, i) => (
-          <motion.article
+          <motion.div
             key={c.title}
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.5, delay: i * 0.1 }}
-            className="group rounded-2xl glass p-7 transition-colors hover:border-primary/40"
+            className="h-full"
           >
-            <span className="grid size-11 place-items-center rounded-xl bg-primary/10 text-primary transition-shadow group-hover:glow-ring">
-              <c.icon className="size-5" />
-            </span>
-            <h3 className="mt-5 text-lg font-semibold tracking-tight">{c.title}</h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
-            <p className="mt-6 font-mono text-[11px] text-accent/80">{c.tag}</p>
-          </motion.article>
+            <SpotlightCard className="group h-full p-7 transition-colors hover:border-primary/40">
+              <span className="relative z-10 grid size-11 place-items-center rounded-xl bg-primary/10 text-primary transition-shadow group-hover:glow-ring">
+                <c.icon className="size-5" />
+              </span>
+              <h3 className="relative z-10 mt-5 text-lg font-semibold tracking-tight">{c.title}</h3>
+              <p className="relative z-10 mt-3 text-sm leading-relaxed text-muted-foreground">{c.body}</p>
+              <p className="relative z-10 mt-6 font-mono text-[11px] text-accent/80">{c.tag}</p>
+            </SpotlightCard>
+          </motion.div>
         ))}
       </div>
     </section>

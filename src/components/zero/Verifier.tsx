@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { QrCode, ScanLine, ShieldCheck, XCircle, Loader2 } from "lucide-react";
+import { FileCheck, QrCode, Search, AlertCircle, ScanLine, ShieldCheck, XCircle, Loader2 } from "lucide-react";
+import { SpotlightCard } from "./SpotlightCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -29,20 +30,22 @@ export function Verifier() {
               Paste a proof hash or scan the holder's QR credential. You get a cryptographic
               yes-or-no — never the underlying balance, score, or income.
             </p>
-            <div className="mt-8 flex items-center gap-4 rounded-2xl glass p-5">
-              <div className="grid size-24 shrink-0 place-items-center rounded-xl border border-border bg-background/60">
-                <QrCode className="size-12 text-accent" />
+            <SpotlightCard className="mt-8 p-5">
+              <div className="flex items-center gap-4">
+                <div className="relative z-10 grid size-24 shrink-0 place-items-center rounded-xl border border-border bg-background/60">
+                  <QrCode className="size-12 text-accent" />
+                </div>
+                <div className="relative z-10 text-sm text-muted-foreground">
+                  <p className="font-medium text-foreground">Scan credential QR</p>
+                  <p className="mt-1">
+                    Point the holder's ZeroScore wallet QR at your camera to auto-fill the proof hash.
+                  </p>
+                </div>
               </div>
-              <div className="text-sm text-muted-foreground">
-                <p className="font-medium text-foreground">Scan credential QR</p>
-                <p className="mt-1">
-                  Point the holder's ZeroScore wallet QR at your camera to auto-fill the proof hash.
-                </p>
-              </div>
-            </div>
+            </SpotlightCard>
           </div>
 
-          <div className="rounded-2xl glass p-6 sm:p-8">
+          <SpotlightCard className="p-6 sm:p-8">
             <label className="text-xs text-muted-foreground" htmlFor="proof">
               Proof Hash
             </label>
@@ -110,7 +113,7 @@ export function Verifier() {
                 </motion.div>
               )}
             </AnimatePresence>
-          </div>
+          </SpotlightCard>
         </div>
       </div>
     </section>

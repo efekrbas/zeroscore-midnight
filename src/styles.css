@@ -164,3 +164,23 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Custom Sleek Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+  border-left: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(16, 185, 129, 0.15); /* Emerald / Primary color faint */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(16, 185, 129, 0.3);
+}

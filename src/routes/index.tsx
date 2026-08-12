@@ -7,6 +7,7 @@ import { Architecture } from "@/components/zero/Architecture";
 import { Marquee } from "@/components/zero/Marquee";
 import { Footer } from "@/components/zero/Footer";
 import { Preloader } from "@/components/zero/Preloader";
+import { Cursor } from "@/components/zero/Cursor";
 
 const title = "ZeroScore — Zero-Knowledge Credit & Asset Verification";
 const description =
@@ -28,7 +29,8 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
+      <Cursor />
       <Preloader />
       <Header />
       <main>
