@@ -269,12 +269,10 @@ export function Dashboard() {
                         <Copy className="size-4 text-muted-foreground group-hover:text-foreground transition-colors" /> Copy Link
                       </button>
                       <a
-                        href={`https://explorer.midnight.network/tx/${result.hash}`}
-                        target="_blank"
-                        rel="noreferrer"
+                        href="#verifiers"
                         className="group flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary/10 border border-primary/20 font-medium text-primary transition-all duration-300 hover:bg-primary/20 active:scale-[0.97]"
                       >
-                        <ExternalLink className="size-4" /> View on Explorer
+                        <ShieldCheck className="size-4" /> Test on Verifier Portal
                       </a>
                     </div>
                   </motion.div>
