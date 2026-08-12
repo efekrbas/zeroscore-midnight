@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { ArrowRight, BookOpen, Lock, EyeOff, Network } from "lucide-react";
 import { Scene3D } from "./Scene3D";
+import { MidnightLogo } from "./MidnightLogo";
 
 const chips = [
   { icon: Lock, label: "Private state stays local" },
@@ -21,13 +22,13 @@ export function Hero() {
       <div className="relative z-10 mx-auto w-full max-w-5xl px-5 text-center">
         {/* Eyebrow Tag */}
         <motion.div
-          initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ duration: 0.8, ease: customEase }}
-          className="mx-auto inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-[10px] uppercase tracking-[0.2em] font-medium text-primary shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.05, ease: customEase }}
+          className="mx-auto flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-xs font-medium text-primary tracking-[0.2em] uppercase"
         >
-          <span className="size-1.5 animate-pulse rounded-full bg-primary" />
-          Built on Midnight Network
+          <MidnightLogo className="size-3.5" />
+          <span>Built on Midnight Network</span>
         </motion.div>
 
         {/* Massive Typography */}

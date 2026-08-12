@@ -67,11 +67,8 @@ export function Header() {
             <div className="grid size-9 place-items-center rounded-xl bg-primary/10 border border-primary/20 p-1.5">
               <img src="/logo.svg" alt="Logo" className="w-full h-full object-contain" />
             </div>
-            <span className="text-lg font-semibold tracking-tight text-foreground flex items-center gap-[1px]">
-              Zer<MidnightLogo className="size-[0.85em] mx-[1px]" />
-              <span className="text-primary flex items-center gap-[1px]">
-                Sc<MidnightLogo className="size-[0.85em] mx-[1px]" />re
-              </span>
+            <span className="text-lg font-semibold tracking-tight text-foreground">
+              Zero<span className="text-primary">Score</span>
             </span>
           </a>
 
