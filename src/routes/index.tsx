@@ -29,7 +29,8 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="min-h-screen bg-background relative">
+    <div className="min-h-screen bg-background relative selection:bg-primary/30 selection:text-primary-foreground">
+      <div className="bg-grain" />
       <Cursor />
       <Preloader />
       <Header />

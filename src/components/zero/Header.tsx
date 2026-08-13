@@ -4,6 +4,7 @@ import { ShieldCheck, Wallet, Menu, X, ArrowRight, LogOut, Loader2 } from "lucid
 import { midnightService } from "@/services/midnight";
 import { toast } from "sonner";
 import { MidnightLogo } from "./MidnightLogo";
+import { Magnetic } from "./Magnetic";
 import { Button } from "@/components/ui/button";
 
 const links = [
@@ -85,6 +86,7 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-3">
+          <Magnetic magneticPull={0.15}>
             <button
               onClick={handleConnect}
               disabled={isConnecting}
@@ -99,28 +101,22 @@ export function Header() {
                 color: connected ? "var(--primary)" : "white",
               }}
             >
-
               <span className="relative z-10 flex w-full items-center justify-between gap-3">
                 <span className="whitespace-nowrap font-mono text-[13px] tracking-tight">
                   {isConnecting ? "Connecting..." : connected ? "0x3f...9a2c" : "Connect Wallet"}
                 </span>
-                <span
-                  className="grid size-7 shrink-0 place-items-center rounded-full transition-colors duration-300"
-                  style={{
-                    backgroundColor: connected
-                      ? "rgba(16, 185, 129, 0.2)"
-                      : "rgba(255, 255, 255, 0.1)",
-                    color: connected ? "var(--primary)" : "white",
-                  }}
-                >
+                <span className="grid size-8 shrink-0 place-items-center rounded-full bg-white/10 text-white transition-colors group-hover:bg-primary group-hover:text-primary-foreground group-active:scale-95">
                   {isConnecting ? (
-                    <Loader2 className="size-3.5 animate-spin" />
+                    <Loader2 className="size-4 animate-spin" />
+                  ) : connected ? (
+                    <LogOut className="size-4" />
                   ) : (
-                    <Wallet className="size-3.5" />
+                    <Wallet className="size-4" />
                   )}
                 </span>
               </span>
             </button>
+          </Magnetic>
 
             <button
               className="grid size-10 place-items-center rounded-full bg-white/5 border border-white/10 md:hidden active:scale-[0.97] transition-transform"

@@ -7,14 +7,21 @@ function GlowingWireframe() {
   const coreRef = useRef<THREE.Mesh>(null);
   const outerRef = useRef<THREE.Mesh>(null);
 
-  useFrame((_, delta) => {
+  useFrame((state, delta) => {
     if (coreRef.current) {
       coreRef.current.rotation.x += delta * 0.1;
       coreRef.current.rotation.y += delta * 0.15;
+      
+      // Mouse Parallax effect
+      coreRef.current.rotation.x = THREE.MathUtils.lerp(coreRef.current.rotation.x, state.pointer.y * 0.5, 0.05);
+      coreRef.current.rotation.y = THREE.MathUtils.lerp(coreRef.current.rotation.y, state.pointer.x * 0.5, 0.05);
     }
     if (outerRef.current) {
       outerRef.current.rotation.x -= delta * 0.05;
       outerRef.current.rotation.y -= delta * 0.08;
+
+      outerRef.current.rotation.x = THREE.MathUtils.lerp(outerRef.current.rotation.x, state.pointer.y * 0.3, 0.05);
+      outerRef.current.rotation.y = THREE.MathUtils.lerp(outerRef.current.rotation.y, state.pointer.x * 0.3, 0.05);
     }
   });
 

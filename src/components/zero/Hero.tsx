@@ -1,7 +1,9 @@
 import { motion } from "motion/react";
 import { ArrowRight, BookOpen, Lock, EyeOff, Network } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { Scene3D } from "./Scene3D";
 import { MidnightLogo } from "./MidnightLogo";
+import { Magnetic } from "./Magnetic";
 
 const chips = [
   { icon: Lock, label: "Private state stays local" },
@@ -46,10 +48,9 @@ export function Hero() {
           initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 1, delay: 0.2, ease: customEase }}
-          className="mx-auto mt-8 max-w-2xl text-base text-muted-foreground sm:text-xl font-medium"
+          className="mx-auto mt-8 max-w-2xl text-base text-muted-foreground sm:text-lg font-medium"
         >
-          Zero-Knowledge Credit &amp; Asset Verification powered by Midnight Network &amp; Compact
-          DSL.
+          A Privacy-First platform using Midnight's ZK technology. Verify credit, assets, and identity without exposing sensitive data—unlocking secure, undercollateralized DeFi.
         </motion.p>
 
         {/* CTAs */}
@@ -59,16 +60,18 @@ export function Hero() {
           transition={{ duration: 1, delay: 0.3, ease: customEase }}
           className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          {/* Button-in-Button Architecture */}
-          <a
-            href="#dashboard"
-            className="group relative flex h-14 items-center gap-4 rounded-full bg-primary pl-8 pr-2 font-semibold text-primary-foreground shadow-[0_0_40px_-10px_rgba(var(--primary),0.5)] transition-all duration-300 hover:bg-primary/90 active:scale-[0.97]"
-          >
-            <span className="text-base tracking-wide">Launch App</span>
-            <div className="grid size-10 place-items-center rounded-full bg-black/15 shadow-sm transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-105 group-hover:translate-x-1 group-active:scale-95">
-              <ArrowRight className="size-4" strokeWidth={2.5} />
-            </div>
-          </a>
+          <Magnetic magneticPull={0.2}>
+            {/* Button-in-Button Architecture */}
+            <a
+              href="#verifiers"
+              className="group relative flex h-14 items-center gap-4 rounded-full bg-primary pl-8 pr-2 font-semibold text-primary-foreground shadow-[0_0_40px_-10px_rgba(var(--primary),0.5)] transition-all duration-300 hover:bg-primary/90 active:scale-[0.97]"
+            >
+              <span className="text-base tracking-wide">Start Verification</span>
+              <div className="grid size-10 place-items-center rounded-full bg-black/15 shadow-sm transition-transform duration-300 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:scale-105 group-hover:translate-x-1 group-active:scale-95">
+                <ArrowRight className="size-4" strokeWidth={2.5} />
+              </div>
+            </a>
+          </Magnetic>
 
           {/* Secondary Outline Button */}
           <a
