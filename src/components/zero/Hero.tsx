@@ -63,7 +63,7 @@ export function Hero() {
           <Magnetic magneticPull={0.2}>
             {/* Button-in-Button Architecture */}
             <a
-              href="#verifiers"
+              href="#dashboard"
               className="group relative flex h-14 items-center gap-4 rounded-full bg-primary pl-8 pr-2 font-semibold text-primary-foreground shadow-[0_0_40px_-10px_rgba(var(--primary),0.5)] transition-all duration-300 hover:bg-primary/90 active:scale-[0.97]"
             >
               <span className="text-base tracking-wide">Start Verification</span>
