@@ -40,6 +40,10 @@ export function Dashboard() {
   const [condition, setCondition] = useState<(typeof conditions)[number]["id"]>("balance");
   const [stepIndex, setStepIndex] = useState(-1);
   const [result, setResult] = useState<Result | null>(null);
+  
+  // Minting State
+  const [mintStatus, setMintStatus] = useState<"idle" | "signing" | "broadcasting" | "confirmed">("idle");
+  const [mintTx, setMintTx] = useState<string | null>(null);
 
   const running = stepIndex >= 0;
 
@@ -52,6 +56,8 @@ export function Dashboard() {
     }
     setResult(null);
     setStepIndex(0);
+    setMintStatus("idle");
+    setMintTx(null);
 
     try {
       await midnightService.connectLaceWallet();
@@ -76,6 +82,29 @@ export function Dashboard() {
     } catch (e: any) {
       setStepIndex(-1);
       toast.error(e.message || "Failed to generate ZK Proof");
+    }
+  };
+
+  const mintBadge = async () => {
+    if (!result) return;
+    try {
+      setMintStatus("signing");
+      toast.info("Please sign the transaction in your wallet...");
+      
+      // The service already handles the delays for us
+      setMintStatus("broadcasting");
+      toast.loading("Broadcasting transaction to Midnight Testnet...", { id: "tx-broadcast" });
+      
+      const txHash = await midnightService.mintZKBadge(result.hash);
+      
+      toast.dismiss("tx-broadcast");
+      toast.success("ZK-Badge minted successfully!");
+      setMintTx(txHash);
+      setMintStatus("confirmed");
+    } catch (e: any) {
+      toast.dismiss("tx-broadcast");
+      setMintStatus("idle");
+      toast.error(e.message || "Transaction failed");
     }
   };
 
@@ -276,26 +305,65 @@ export function Dashboard() {
                       </Row>
                     </dl>
 
-                    <div className="mt-auto flex flex-col gap-3">
-                      <button
-                        onClick={() => {
-                          navigator.clipboard?.writeText(
-                            `https://zeroscore-midnight.vercel.app/verify/${result.hash}`,
-                          );
-                          toast.success("Verification link copied");
-                        }}
-                        className="group flex h-12 w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 font-medium text-foreground transition-all duration-300 hover:bg-white/10 active:scale-[0.97]"
-                      >
-                        <Copy className="size-4 text-muted-foreground group-hover:text-foreground transition-colors" />{" "}
-                        Copy Link
-                      </button>
-                      <a
-                        href="#verifiers"
-                        className="group flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary/10 border border-primary/20 font-medium text-primary transition-all duration-300 hover:bg-primary/20 active:scale-[0.97]"
-                      >
-                        <ShieldCheck className="size-4" /> Test on Verifier Portal
-                      </a>
-                    </div>
+                    {mintStatus === "confirmed" ? (
+                      <div className="mt-auto flex flex-col pt-4">
+                        <div className="relative overflow-hidden rounded-2xl border border-primary/40 bg-gradient-to-br from-primary/20 via-black to-primary/5 p-5 shadow-[0_0_30px_-5px_rgba(var(--primary),0.3)]">
+                          <div className="absolute -right-10 -top-10 size-32 rounded-full bg-primary/20 blur-3xl mix-blend-screen" />
+                          <div className="relative z-10 flex items-center gap-3">
+                            <div className="grid size-10 place-items-center rounded-full bg-primary/20 border border-primary/30">
+                              <Sparkles className="size-5 text-primary" />
+                            </div>
+                            <div>
+                              <h5 className="font-semibold text-foreground text-sm">ZeroScore ZK-Badge</h5>
+                              <p className="text-xs text-muted-foreground font-mono mt-0.5">Soulbound Credential</p>
+                            </div>
+                          </div>
+                          <div className="relative z-10 mt-5 space-y-2">
+                            <div className="flex justify-between text-xs">
+                              <span className="text-muted-foreground">Status</span>
+                              <span className="text-primary font-medium">Minted On-Chain</span>
+                            </div>
+                            <div className="flex justify-between text-xs">
+                              <span className="text-muted-foreground">TxHash</span>
+                              <a href="#" className="font-mono text-primary/80 hover:text-primary transition-colors underline decoration-primary/30 underline-offset-2">
+                                {mintTx?.slice(0, 10)}...{mintTx?.slice(-8)}
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="mt-auto flex flex-col gap-3">
+                        <button
+                          onClick={mintBadge}
+                          disabled={mintStatus !== "idle"}
+                          className="group relative flex h-12 w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-primary font-semibold text-primary-foreground shadow-[0_0_20px_-5px_rgba(var(--primary),0.4)] transition-all duration-300 hover:bg-primary/90 hover:shadow-[0_0_30px_-5px_rgba(var(--primary),0.6)] active:scale-[0.97] disabled:opacity-70 disabled:cursor-not-allowed"
+                        >
+                          {mintStatus === "idle" ? (
+                            <>
+                              <Sparkles className="size-4" /> Mint ZK-Badge (Fee: 5 tDUST)
+                            </>
+                          ) : mintStatus === "signing" ? (
+                            <>
+                              <Loader2 className="size-4 animate-spin" /> Awaiting Signature...
+                            </>
+                          ) : (
+                            <>
+                              <Loader2 className="size-4 animate-spin" /> Broadcasting...
+                            </>
+                          )}
+                          
+                          {/* Animated shimmer effect */}
+                          <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-shimmer" />
+                        </button>
+                        <a
+                          href="#verifiers"
+                          className="group flex h-12 w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 font-medium text-foreground transition-all duration-300 hover:bg-white/10 active:scale-[0.97]"
+                        >
+                          <ShieldCheck className="size-4 text-muted-foreground group-hover:text-foreground transition-colors" /> Test on Verifier Portal
+                        </a>
+                      </div>
+                    )}
                   </motion.div>
                 )}
 

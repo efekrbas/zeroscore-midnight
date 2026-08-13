@@ -8,6 +8,7 @@ export interface MidnightProvider {
     threshold: number,
   ) => Promise<{ hash: string; passed: boolean }>;
   verifyProofOnChain: (proofHash: string) => Promise<boolean>;
+  mintZKBadge: (proofHash: string) => Promise<string>;
 }
 
 class MidnightService implements MidnightProvider {
@@ -95,6 +96,30 @@ class MidnightService implements MidnightProvider {
     let s = "0x";
     for (let i = 0; i < 40; i++) s += hex[Math.floor(Math.random() * 16)];
     return s;
+  }
+  /**
+   * Simulates an on-chain token burn / ZK-Badge mint transaction.
+   * Prompts the wallet for signature and broadcasts the TX.
+   */
+  async mintZKBadge(proofHash: string): Promise<string> {
+    console.log(`Requesting wallet signature to mint badge for ${proofHash}...`);
+    
+    // Simulate user wallet signature prompt (Lace Wallet popup)
+    await delay(1500);
+    
+    console.log("Signature received. Broadcasting transaction...");
+    // Simulate network delay / block confirmation
+    await delay(2500);
+
+    // Generate a mock TxHash
+    const mockTxHash =
+      "0x" +
+      Array.from({ length: 64 })
+        .map(() => Math.floor(Math.random() * 16).toString(16))
+        .join("");
+        
+    console.log("Transaction confirmed!", mockTxHash);
+    return mockTxHash;
   }
 }
 
