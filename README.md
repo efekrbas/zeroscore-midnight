@@ -1,88 +1,79 @@
-# ZeroScore Midnight 🛡️
+# 🟢 ZeroScore
 
-**Verifiable & Privacy-Preserving Financial Credentials**
+> **Prove Your Financial Power Without Revealing Data.**
+> 
+> *A Privacy-First platform using Midnight's ZK technology to verify credit, assets, and identity—unlocking secure, undercollateralized DeFi.*
 
-🌐 **Live Demo:** [https://zeroscore-midnight.vercel.app](https://zeroscore-midnight.vercel.app)
+![Midnight Network](https://img.shields.io/badge/Built_on-Midnight_Network-10b981?style=for-the-badge)
+![Zero Knowledge](https://img.shields.io/badge/Tech-ZK--SNARKs-black?style=for-the-badge)
+![React](https://img.shields.io/badge/Frontend-React_19-blue?style=for-the-badge)
 
----
+## 📖 The Vision
 
-## 🎯 The Problem & Our Solution
+In modern DeFi, obtaining undercollateralized loans or verifying accredited investor status requires users to dox their private financial data (bank balances, credit scores). **ZeroScore** changes this paradigm. 
 
-**The Problem:** In traditional finance and Web3 lending, proving your financial eligibility (like credit score, wallet balance, or income) requires exposing sensitive data. This leads to privacy leaks, identity theft, and reluctance to participate in DeFi protocols.
+Using **Midnight Network's Compact DSL**, ZeroScore allows users to generate Zero-Knowledge Proofs (ZKPs) locally on their device. You can prove you have >$10,000 in your account, without ever revealing the actual balance. 
 
-**The Solution with Midnight:** ZeroScore uses the **Midnight Network** and its Zero-Knowledge (ZK) capabilities via the **Compact DSL** to solve this. Instead of sharing your exact financial figures, you generate a ZK-Proof locally. The proof mathematically guarantees that you meet a required threshold (e.g., `Balance > $10,000`) **without ever exposing the actual number to the public network**. Only a verified boolean result and a unique commitment hash are emitted to the public ledger.
-
----
-
-## 🏗️ Architecture Diagram
-
-```mermaid
-sequenceDiagram
-    participant User as User (Client)
-    participant UI as Lovable UI
-    participant SDK as Midnight-JS SDK
-    participant Circuit as Compact Circuit (Local)
-    participant Ledger as Midnight Ledger (Public)
-
-    User->>UI: Inputs private financial data
-    UI->>SDK: Requests ZK Proof generation
-    SDK->>Circuit: Executes verify_threshold(privateState)
-    Note over Circuit: 🔒 Private execution:<br>assert(secret >= threshold)
-    Circuit-->>SDK: Returns Boolean + ZK-SNARK Proof
-    SDK->>Ledger: Submits tx with Proof & Hash
-    Note over Ledger: 🌐 Public state updated:<br>verificationLogs.insert(hash)
-    Ledger-->>UI: Transaction confirmed
-    UI-->>User: Displays success & Proof Hash
-```
+**Privacy is the protocol, not a setting.**
 
 ---
 
-## 💻 Local Setup Instructions
+## ✨ Features
 
-This project is built using Vite, React, and Tailwind (Lovable).
+- **Selective Disclosure:** Reveal a single boolean claim (e.g., "Balance > $10,000: True") while every underlying figure stays sealed in your local private state.
+- **Interactive Proof Studio (Dashboard):** A stunning, Awwwards-tier UI to simulate the ZK proving process.
+- **On-Chain ZK-Badge Minting:** After proof generation, users can sign a transaction to mint a Soulbound ZK-Badge representing their verified credential.
+- **Cardano Sidechain Security:** Proofs settle on Midnight, inheriting Cardano's battle-tested consensus while keeping ledger state confidential.
+- **Ultra-Premium UX:** Features cinematic grain, magnetic UI elements, 3D interactive parallax, and smooth Framer Motion spring physics.
+
+---
+
+## 🏗️ Architecture
+
+1. **Private Input Vault:** Users input their sensitive data locally (never leaves the browser).
+2. **Compact DSL Circuits:** Verification logic compiles into ZK-SNARK circuits with deterministic constraints.
+3. **Execution Engine:** Generates the cryptographic proof locally.
+4. **Ledger Settlement:** The proof is submitted to the Midnight Testnet for on-chain verification and badge minting.
+
+---
+
+## 🚀 Quick Start
 
 ### Prerequisites
 - Node.js (v18+)
-- npm or bun
+- npm or yarn
+- Lace Wallet (Midnight Testnet configuration)
 
-### 1. Install Dependencies
-```bash
-npm install
-```
+### Installation
 
-### 2. Environment Variables
-Copy the example environment file and fill in your Midnight RPC endpoints. (Note: Fallbacks to mocked testing environment if Midnight wallet is unattached).
-```bash
-cp .env.example .env
-```
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/efekrbas/zeroscore-midnight.git
+   cd zeroscore-midnight
+   ```
 
-### 3. Contract Compilation (Compact)
-*To compile the `.compact` file locally, you need the Midnight Compact compiler installed.*
-```bash
-# Navigate to the contracts directory
-cd contracts
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-# Compile the contract to generate the verification keys and circuit data
-compactc zero_score.compact
-```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-### 4. Run Development Server
-```bash
-npm run dev
-```
-Navigate to the URL provided in your terminal (usually `http://localhost:8080`) to interact with the Dashboard.
+4. Open `http://localhost:8080` in your browser.
 
 ---
 
-## 🚀 Deployment (Vercel)
+## 💻 Tech Stack
+- **Network:** Midnight Testnet
+- **Smart Contracts:** Compact DSL
+- **Frontend Framework:** React 19 + TypeScript + Vite
+- **Styling:** TailwindCSS
+- **Animations:** Motion (Framer Motion), React Three Fiber (3D)
+- **UI Components:** shadcn/ui, Sonner
 
-This project is fully configured for Vercel. 
+---
 
-*Note for Next.js users: This frontend was generated by Lovable using Vite. Vercel handles this automatically.*
-
-In your Vercel dashboard:
-- **Framework Preset:** Vite
-- **Build Command:** `npm run build`
-- **Output Directory:** `dist`
-
-Add the environment variables from your `.env` file into your Vercel project settings before deploying.
+*Built with 💚 for the Midnight Network Hackathon.*
