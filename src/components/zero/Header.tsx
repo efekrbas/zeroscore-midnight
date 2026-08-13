@@ -8,8 +8,8 @@ import { Magnetic } from "./Magnetic";
 import { Button } from "@/components/ui/button";
 
 const links = [
-  { label: "Dashboard", href: "#dashboard" },
-  { label: "Verifiers", href: "#verifiers" },
+  { label: "Proof Studio", href: "#dashboard" },
+  { label: "Verification", href: "#verifiers" },
   { label: "Architecture", href: "#architecture" },
 ];
 
