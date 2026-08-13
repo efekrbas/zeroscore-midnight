@@ -48,7 +48,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 1, delay: 0.2, ease: customEase }}
-          className="mx-auto mt-8 max-w-2xl text-base text-muted-foreground sm:text-lg font-medium"
+          className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg font-medium"
         >
           A Privacy-First platform using Midnight's ZK technology. Verify credit, assets, and identity without exposing sensitive data—unlocking secure, undercollateralized DeFi.
         </motion.p>
@@ -58,7 +58,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 1, delay: 0.3, ease: customEase }}
-          className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <Magnetic magneticPull={0.2}>
             {/* Button-in-Button Architecture */}
