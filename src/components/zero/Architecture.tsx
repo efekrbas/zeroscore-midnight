@@ -51,7 +51,7 @@ export function Architecture() {
               <p className="relative z-10 mt-3 text-sm leading-relaxed text-muted-foreground">
                 {c.body}
               </p>
-              <p className="relative z-10 mt-6 font-mono text-[11px] text-primary/80">{c.tag}</p>
+              <p className="relative z-10 mt-auto pt-6 font-mono text-[11px] text-primary/80">{c.tag}</p>
             </SpotlightCard>
           </motion.div>
         ))}
