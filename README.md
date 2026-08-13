@@ -18,6 +18,14 @@ Using **Midnight Network's Compact DSL**, ZeroScore allows users to generate Zer
 
 ---
 
+## 🎥 Demo Video
+
+[![ZeroScore Demo Video](https://img.youtube.com/vi/lEZ8Eu29pWA/0.jpg)](https://youtu.be/lEZ8Eu29pWA)
+
+*Click the image above to watch the full hackathon demo video.*
+
+---
+
 ## ✨ Features
 
 - **Selective Disclosure:** Reveal a single boolean claim (e.g., "Balance > $10,000: True") while every underlying figure stays sealed in your local private state.
